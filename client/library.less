@@ -1,3 +1,5 @@
+@import "prefixer.lessimport";
+
 #createList {
   padding: 3px 6px;
   margin-top: 5px;
@@ -42,12 +44,12 @@ body, input {
   width: 80px;
 }
 #item-list {
-  .todo:hover {
+  .book:hover {
     .destroy {
       background: url('/destroy.png') no-repeat 0 0;
     }
   }
-  .todo {
+  .book {
     display: block;
     height: 50px;
     position: relative;
@@ -102,14 +104,20 @@ body, input {
       float: left;
       width: 25px;
     }
-    .todo-text {
+    .book-data {
       float: left;
       margin-left: 10px;
       font-size: 100%;
+      div {
+        display: inline;
+      }
+      .book-text {
+        width: 300px;
+      }
     }
   }
   .done {
-    .todo-text {
+    .book-text {
       text-decoration: line-through;
       color: #999;
     }
@@ -118,7 +126,7 @@ body, input {
 ul {
   list-style: none;
 }
-#item-list .todo .display, #item-list .todo .edit {
+#item-list .book .display, #item-list .book .edit {
   margin-left: 30px;
   height: 100%;
   width: auto;
@@ -126,7 +134,7 @@ ul {
   padding-top: 18px;
   line-height: 1;
 }
-#new-todo-box {
+#new-book-box {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 60px;
@@ -169,18 +177,12 @@ body {
   font-weight: bold;
   background: #999;
   color: #fff;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -o-border-radius: 4px;
+  .border-radius(4px);
   opacity: 1;
-  transition: opacity 0.3s linear;
-  -moz-transition: opacity 0.3s linear;
-  -webkit-transition: opacity 0.3s linear;
-  -o-transition: opacity 0.3s linear;
+  .transition(opacity 0.3s linear);
   position: relative;
 }
-#new-todo {
+#new-book {
   position: absolute;
   width: 100%;
 }
@@ -196,7 +198,7 @@ html, body {
   left: 220px;
   overflow: auto;
 }
-#todo-input {
+#book-input {
   width: 300px;
   position: relative;
   top: -3px;

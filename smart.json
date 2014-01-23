@@ -1,5 +1,7 @@
 {
   "packages": {
-    "lodash": {}
+    "lodash": {},
+    "observatory": {},
+    "router": {}
   }
 }
