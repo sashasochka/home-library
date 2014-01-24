@@ -17,47 +17,51 @@
     {{#if loading}}
       Loading...
     {{else}}
-      <div id="new-book-box">
-        <input type="text" id="new-book" placeholder="New item">
-      </div>
-      <ul id="item-list">
+      <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="data-table">
+        <thead>
+          <tr>
+            <th>Назва</th>
+            <th>Автор</th>
+            <th>Мова</th>
+            <th>Жанр</th>
+            <th>Рік</th>
+            <th>Примітки</th>
+          </tr>
+        </thead>
         {{#each books}}
-          <li class="book {{!done_class}}">
-            {{!#if editing}}
-              <!--<div class="edit">-->
-                <!--<input id="todo-input" type="text" value="{{text}}">-->
-              <!--</div>-->
-            {{!else}}
-              <div class="destroy"></div>
-              <div class="display">
-                <input class="check" name="markdone" type="checkbox" {{!done_checkbox}}>
-                <div class="book-data">
-                  <div class="book-text">
-                    {{name}}
-                  </div>
-                </div>
-              </div>
-            {{!/if}}
-            <!--<div class="item-tags">-->
-              <!--{{!#each tag_objs}}-->
-                <!--<div class="tag removable_tag">-->
-                  <!--<div class="name">{{!tag}}</div>-->
-                  <!--<div class="remove"></div>-->
-                <!--</div>-->
-              <!--{{!/each}}-->
-              <!--{{!#if adding_tag}}-->
-                <!--<div class="tag edittag">-->
-                  <!--<input type="text" id="edittag-input" value="">-->
-                <!--</div>-->
-              <!--{{!else}}-->
-                <!--<div class="tag addtag">-->
-                  <!--+tag-->
-                <!--</div>-->
-              <!--{{!/if}}-->
-            <!--</div>-->
-          </li>
+          <tr>
+            <td>{{name}}</td>
+            <td>{{author_name}} {{author_surname}}</td>
+            <td>{{lang}}</td>
+            <td>{{genre}}</td>
+            <td>{{year}}</td>
+            <td>{{note}}</td>
+          </tr>
         {{/each}}
-      </ul>
+        <tfoot>
+          <tr>
+            <th>Назва</th>
+            <th>Автор</th>
+            <th>Мова</th>
+            <th>Жанр</th>
+            <th>Рік</th>
+            <th>Примітки</th>
+          </tr>
+        </tfoot>
+      </table>
+      {{> pagination}}
     {{/if}}
+  </div>
+</template>
+
+<template name="pagination">
+  <div class="pagination" id="pagination">
+    <ul>
+      <li class="{{active_previous_class}}" id="previous_page"><a href="#">← Previous</a></li>
+      {{#each page}}
+        <li class="{{active_class}}"><a href="#" class="page_number">{{page_number}}</a></li>
+      {{/each}}
+      <li class="{{active_next_class}}"><a href="#" id="next_page">Next →</a></li>
+    </ul>
   </div>
 </template>
