@@ -1,23 +1,29 @@
+# Create a client-side subscription for the count of users.
+BooksCount = new Meteor.Collection 'books-count'
+Books = new Meteor.Collection 'books'
+
+booksCountHandle = Meteor.subscribe 'books-count'
+
 booksHandle = Meteor.subscribe 'books', -> ## FIXME subscribe only to subset on the current page
   undefined
 
-Session.setDefault 'current_page', 1
-Session.setDefault 'books_per_page_limit', 13
-Session.set 'number_of_pages', 1
+Session.setDefault 'current-page', 1
+Session.setDefault 'books-per-page-limit', 13
+Session.set 'number-of-pages', 1
 
 Deps.autorun ->
-  if booksHandle.ready()
-    Session.set 'number_of_pages',
-      Math.ceil(Books.find().count() / Session.get('books_per_page_limit'))
+  if booksCountHandle.ready()
+    Session.set 'number-of-pages',
+      Math.ceil(BooksCount.findOne().count / Session.get('books-per-page-limit'))
 
 # Helper function for adding 'active' class to tags if condition holds
-class_if = (className, bool_value) ->
-  if bool_value then className else ''
+class_if = (class_name, bool_value) ->
+  if bool_value then class_name else ''
 
 # Paginated list of books
 Template.books.books = ->
-  limit = Session.get 'books_per_page_limit'
-  page = Session.get 'current_page'
+  limit = Session.get 'books-per-page-limit'
+  page = Session.get 'current-page'
   Books.find {},
     sort:
       _id: 1
@@ -30,25 +36,25 @@ Template.books.loading = ->
 
 # List of book pages
 Template.pagination.page = ->
-  _.map _.range(1, 1 + Session.get 'number_of_pages'), (page_number) ->
+  _.map _.range(1, 1 + Session.get 'number-of-pages'), (page_number) ->
     page_number: page_number
     active_class: ->
-      class_if 'active', page_number is Session.get 'current_page'
+      class_if 'active', page_number is Session.get 'current-page'
 
 # Handle clicks on pagination
 Template.pagination.events =
   'click .page_number': ->
-    Session.set 'current_page', @page_number
+    Session.set 'current-page', @page_number
 
 # Set up
 Template.pagination.active_previous_class = ->
-  class_if 'disabled', (Session.get 'current_page') is 1
+  class_if 'disabled', (Session.get 'current-page') is 1
 
 Template.pagination.active_next_class = ->
-  class_if 'disabled', (Session.get 'current_page') is (Session.get 'number_of_pages')
+  class_if 'disabled', (Session.get 'current-page') is (Session.get 'number-of-pages')
 
 #Meteor.Router.add
 #  '/': '/'
 #  '/news': 'news'
 #  '/about': ->
-#  '*': 'not_found'
+#  '*': 'not-found'
