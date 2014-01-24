@@ -14,7 +14,6 @@ handlebars
 livedata
 mongo-livedata
 spiderable
-jquery
 
 preserve-inputs
 insecure

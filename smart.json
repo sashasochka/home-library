@@ -4,6 +4,7 @@
     "observatory": {},
     "router": {},
     "bootstrap3-less": {},
+    "jquery": {},
     "accounts-ui-bootstrap-3": {}
   }
 }
