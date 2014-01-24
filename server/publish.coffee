@@ -4,19 +4,7 @@
 Meteor.publish 'books', ->
   Books.find()
 
-
-# 2. Publish complete set of lists to all clients.
-#Meteor.publish 'lists', ->
-#  Lists.find()
-
-
-# 3. Publish all items for requested list_id.
-
-# Todos -- {text: String,
-#           done: Boolean,
-#           tags: [String, ...],
-#           list_id: String,
-#           timestamp: Number}
-#Meteor.publish 'todos', (list_id) ->
-#  check list_id, String
-#  Todos.find list_id: list_id
+Meteor.methods
+  addBook: (book) ->
+    book.timestamp = new Date()
+    Books.insert book

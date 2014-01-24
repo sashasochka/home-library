@@ -2,7 +2,7 @@ booksHandle = Meteor.subscribe 'books', ->
   undefined
 
 Session.setDefault 'current_page', 1
-Session.setDefault 'books_per_page_limit', 20
+Session.setDefault 'books_per_page_limit', 13
 Session.set 'number_of_pages', 1 #Math.ceil(Books.find().count() / Session.get('books_per_page_limit'))
 
 Deps.autorun ->

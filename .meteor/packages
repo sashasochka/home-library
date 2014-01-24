@@ -3,20 +3,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-spiderable
-jquery
-
-preserve-inputs
-insecure
-less
-coffeescript
-bootstrap
-accounts-google
-accounts-password
-accounts-base
-accounts-ui
-
-
 meteor
 check
 session
@@ -27,5 +13,19 @@ lodash
 handlebars
 livedata
 mongo-livedata
+spiderable
+jquery
+
+preserve-inputs
+insecure
+less
+coffeescript
+accounts-google
+accounts-password
+accounts-base
+
 observatory
 router
+bootstrap3-less
+accounts-ui-bootstrap-3
+
