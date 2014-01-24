@@ -1,17 +1,19 @@
 # Create a client-side subscription for the count of users.
 BooksCount = new Meteor.Collection 'books-count'
-Books = new Meteor.Collection 'books'
 
 booksCountHandle = Meteor.subscribe 'books-count'
-
-booksHandle = Meteor.subscribe 'books', -> ## FIXME subscribe only to subset on the current page
-  undefined
+booksHandle = null
 
 Session.setDefault 'current-page', 1
 Session.setDefault 'books-per-page-limit', 13
 Session.set 'number-of-pages', 1
 
 Deps.autorun ->
+  # tb.info 'Deps autorun called'
+  # tb.info 'Books-per-page-limit', {value: Session.get 'books-per-page-limit'}
+  booksHandle = Meteor.subscribe 'books',
+    Session.get('current-page'),
+    Session.get('books-per-page-limit') # TODO change books-per-page-limit to books-per-page
   if booksCountHandle.ready()
     Session.set 'number-of-pages',
       Math.ceil(BooksCount.findOne().count / Session.get('books-per-page-limit'))
@@ -24,14 +26,14 @@ class_if = (class_name, bool_value) ->
 Template.books.books = ->
   limit = Session.get 'books-per-page-limit'
   page = Session.get 'current-page'
+  # tb.info 'Template books called', {limit, page}
   Books.find {},
     sort:
-      _id: 1
-    limit: limit
-    skip: limit * (page - 1)
+      timestamp: -1
 
 # True if books still loading
 Template.books.loading = ->
+  # tb.info 'booksHandle is null: ', (booksHandle is null)
   not booksHandle.ready()
 
 # List of book pages
@@ -45,6 +47,7 @@ Template.pagination.page = ->
 Template.pagination.events =
   'click .page_number': ->
     Session.set 'current-page', @page_number
+    # FIXME event.preventDefault() warning in chrome console
 
 # Set up
 Template.pagination.active_previous_class = ->

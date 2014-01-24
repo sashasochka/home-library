@@ -1,7 +1,12 @@
-Books = new Meteor.Collection 'books'
-
-Meteor.publish 'books', -> #(page, page_size) ->
-  Books.find()
+Meteor.publish 'books', (page, page_size) ->
+  tb.info 'meteor publish callback called: subscribed', [page,  page_size]
+  check page, Match.Integer
+  check page_size, Match.Integer
+  Books.find {},
+    limit: page_size
+    skip: page_size * (page - 1)
+    sort:
+      timestamp: -1
 
 Meteor.publish 'books-count', ->
   count = 0 # the count of all users
