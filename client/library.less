@@ -29,23 +29,6 @@ input {
   margin: 0;
 }
 
-#main-pane, #side-pane {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-
-//h3 {
-//  font-weight: bold;
-//  text-decoration: underline;
-//  font-size: 120%;
-//  padding: 8px 6px;
-//  text-align: center;
-//}
-
 #data-table {
   .table;
   .table-striped;
@@ -64,59 +47,26 @@ input {
 
 #item-list {
   width: 100%;
-  .book:hover {
-    .destroy {
-      background: url('/destroy.png') no-repeat 0 0;
-    }
-  }
-  .book {
-    display: block;
-    height: 50px;
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid #ccc;
-    .item-tags {
-      overflow: auto;
-      float: right;
-      margin-right: 8px;
-      .tag {
-        margin-top: 15px;
-        .remove:hover {
-          background-position: -16px center;
-        }
-        .remove {
-          position: absolute;
-          top: 0;
-          right: 4px;
-          bottom: 0;
-          width: 16px;
-          background-repeat: no-repeat;
-          background-position: 0 center;
-          background-image: url("/close_16.png");
-        }
-      }
-      div.addtag {
-        background: none;
-        color: #333;
-        border: 1px dashed #999;
-      }
-      .removable_tag {
-        padding-right: 22px;
-      }
-    }
-  }
 }
+
 #main-pane {
+  position: absolute;
   top: 45px;
   bottom: 0;
   left: 220px;
   overflow: auto;
 }
+
 #items-view {
   margin-top: 5px;
   margin-left: 5px;
 }
+
 #side-pane {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 200px;
   right: auto;
   overflow: auto;

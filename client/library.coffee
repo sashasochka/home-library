@@ -1,9 +1,9 @@
-booksHandle = Meteor.subscribe 'books', ->
+booksHandle = Meteor.subscribe 'books', -> ## FIXME subscribe only to subset on the current page
   undefined
 
 Session.setDefault 'current_page', 1
 Session.setDefault 'books_per_page_limit', 13
-Session.set 'number_of_pages', 1 #Math.ceil(Books.find().count() / Session.get('books_per_page_limit'))
+Session.set 'number_of_pages', 1
 
 Deps.autorun ->
   if booksHandle.ready()
