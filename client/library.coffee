@@ -46,8 +46,13 @@ Template.pagination.page = ->
 # Handle clicks on pagination
 Template.pagination.events =
   'click .page_number': ->
-    Session.set 'current-page', @page_number
-    # FIXME event.preventDefault() warning in chrome console
+    Session.set 'current-page', @page_number unless Session.get 'current_page' is @page_number
+  'click #previous_page': ->
+    cur_page = Session.get 'current-page'
+    Session.set 'current-page', cur_page - 1 unless cur_page is 1
+  'click #next_page': ->
+    cur_page = Session.get 'current-page'
+    Session.set 'current-page', cur_page + 1 unless cur_page is Session.get 'number-of-pages'
 
 # Set up
 Template.pagination.active_previous_class = ->
