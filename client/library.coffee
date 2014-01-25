@@ -5,18 +5,18 @@ booksCountHandle = Meteor.subscribe 'books-count'
 booksHandle = null
 
 Session.setDefault 'current-page', 1
-Session.setDefault 'books-per-page-limit', 15
+Session.setDefault 'books-per-page', 15
 Session.set 'number-of-pages', 1
 
 Deps.autorun ->
   # tb.info 'Deps autorun called'
-  # tb.info 'Books-per-page-limit', {value: Session.get 'books-per-page-limit'}
+  # tb.info 'Books-per-page-limit', {value: Session.get 'books-per-page'}
   booksHandle = Meteor.subscribe 'books',
     Session.get('current-page'),
-    Session.get('books-per-page-limit') # TODO change books-per-page-limit to books-per-page
+    Session.get('books-per-page')
   if booksCountHandle.ready()
     Session.set 'number-of-pages',
-      Math.ceil(BooksCount.findOne().count / Session.get('books-per-page-limit'))
+      Math.ceil(BooksCount.findOne().count / Session.get('books-per-page'))
 
 # Helper function for adding 'active' class to tags if condition holds
 class_if = (class_name, bool_value) ->
@@ -24,7 +24,7 @@ class_if = (class_name, bool_value) ->
 
 # Paginated list of books
 Template.books.books = ->
-  limit = Session.get 'books-per-page-limit'
+  limit = Session.get 'books-per-page'
   page = Session.get 'current-page'
   # tb.info 'Template books called', {limit, page}
   books = Books.find {},
