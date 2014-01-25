@@ -20,32 +20,23 @@
       <table cellpadding="0" cellspacing="0" border="0" id="data-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Author</th>
-            <th>Language</th>
-            <th>Genre</th>
-            <th>Year</th>
-            <th>Notes</th>
+            {{#each columns}}
+              <th class="{{class}}" title="{{title}}">{{title}}</th>
+            {{/each}}
           </tr>
         </thead>
         {{#each books}}
           <tr>
-            <td>{{name}}</td>
-            <td>{{author_name}} {{author_surname}}</td>
-            <td>{{lang}}</td>
-            <td>{{genre}}</td>
-            <td>{{year}}</td>
-            <td>{{note}}</td>
+            {{#each this}}
+              <td class="{{class}}" title="{{value}}">{{value}}</td>
+            {{/each}}
           </tr>
         {{/each}}
         <tfoot>
           <tr>
-            <th>Name</th>
-            <th>Author</th>
-            <th>Language</th>
-            <th>Genre</th>
-            <th>Year</th>
-            <th>Notes</th>
+            {{#each columns}}
+              <th class="{{class}}" title="{{title}}">{{title}}</th>
+            {{/each}}
           </tr>
         </tfoot>
       </table>
@@ -58,7 +49,7 @@
   <ul id="pagination">
     <li class="{{active_previous_class}}" id="previous_page"><a href="#">← Previous</a></li>
     {{#each page}}
-    <li class="{{active_class}}"><a href="#" class="page_number">{{page_number}}</a></li>
+      <li class="{{active_class}}"><a href="#" class="page_number">{{isActive}} {{page_number}}</a></li>
     {{/each}}
     <li class="{{active_next_class}}"><a href="#" id="next_page">Next →</a></li>
   </ul>

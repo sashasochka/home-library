@@ -27,14 +27,41 @@ Template.books.books = ->
   limit = Session.get 'books-per-page-limit'
   page = Session.get 'current-page'
   # tb.info 'Template books called', {limit, page}
-  Books.find {},
+  books = Books.find {},
     sort:
       timestamp: -1
+  books.map (book) ->
+    _.map(
+      [book.name, "#{book.author_name} #{book.author_surname}",
+       book.lang, book.genre, book.year, book.note],
+    (value, index) -> {value, class: Template.books.columns()[index].class})
+
 
 # True if books still loading
 Template.books.loading = ->
   # tb.info 'booksHandle is null: ', (booksHandle is null)
   not booksHandle.ready()
+
+
+Template.books.columns = -> [
+  class: 'col-name'
+  title: 'Name'
+,
+  class: 'col-author'
+  title: 'Author'
+,
+  class: 'col-language'
+  title: 'Language'
+,
+  class: 'col-genre'
+  title: 'Genre'
+,
+  class: 'col-year'
+  title: 'Year'
+,
+  class: 'col-notes'
+  title: 'Notes'
+]
 
 # List of book pages
 Template.pagination.page = ->
@@ -42,6 +69,12 @@ Template.pagination.page = ->
     page_number: page_number
     active_class: ->
       class_if 'active', page_number is Session.get 'current-page'
+
+Template.pagination.active_previous_class = ->
+  class_if 'disabled', (Session.get 'current-page') is 1
+
+Template.pagination.active_next_class = ->
+  class_if 'disabled', (Session.get 'current-page') is (Session.get 'number-of-pages')
 
 # Handle clicks on pagination
 Template.pagination.events =
@@ -53,13 +86,6 @@ Template.pagination.events =
   'click #next_page': ->
     cur_page = Session.get 'current-page'
     Session.set 'current-page', cur_page + 1 unless cur_page is Session.get 'number-of-pages'
-
-# Set up
-Template.pagination.active_previous_class = ->
-  class_if 'disabled', (Session.get 'current-page') is 1
-
-Template.pagination.active_next_class = ->
-  class_if 'disabled', (Session.get 'current-page') is (Session.get 'number-of-pages')
 
 #Meteor.Router.add
 #  '/': '/'
