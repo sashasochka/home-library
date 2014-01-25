@@ -1,5 +1,5 @@
 Meteor.publish 'books', (page, page_size) ->
-  tb.info 'meteor publish callback called: subscribed', [page,  page_size]
+  # tb.info 'meteor publish callback called: subscribed', [page,  page_size]
   check page, Match.Integer
   check page_size, Match.Integer
   Books.find {},
@@ -9,14 +9,14 @@ Meteor.publish 'books', (page, page_size) ->
       timestamp: -1
 
 Meteor.publish 'books-count', ->
-  count = 0 # the count of all users
+  count = 0 # the count of all books
   initializing = true # true only when we first start
   handle = Books.find().observeChanges
     added: =>
-      count++ # Increment the count when users are added.
+      ++count # Increment the count when books are added.
       @changed 'books-count', 1, {count} unless initializing
     removed: =>
-      count-- # Decrement the count when users are removed.
+      --count # Decrement the count when books are removed.
       @changed 'books-count', 1, {count}
 
   initializing = false
@@ -32,8 +32,7 @@ Meteor.publish 'books-count', ->
   @onStop ->
     handle.stop()
 
-
 Meteor.methods
   addBook: (book) ->
-    book.timestamp = new Date()
+    book.timestamp = new Date().getTime()
     Books.insert book
