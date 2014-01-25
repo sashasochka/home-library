@@ -29,37 +29,12 @@ input {
   margin: 0;
 }
 
-#data-table {
-  .table;
-  .table-striped;
-  .table-bordered;
-}
-
-#items-view {
-  padding-left: 40px;
-  width: 85%;
-}
-
-#pagination {
-  .pagination;
-  text-align: right;
-}
-
-#item-list {
-  width: 100%;
-}
-
 #main-pane {
   position: absolute;
   top: 45px;
   bottom: 0;
   left: 220px;
   overflow: auto;
-}
-
-#items-view {
-  margin-top: 5px;
-  margin-left: 5px;
 }
 
 #side-pane {
@@ -73,3 +48,27 @@ input {
   border-right: 1px solid #999;
   background: #ddd;
 }
+
+#data-table {
+  .table;
+  .table-striped;
+  .table-bordered;
+  border-spacing: 0;
+  border-collapse: collapse;
+  td {
+    padding: 0;
+  }
+}
+
+#items-view {
+  padding-left: 40px;
+  width: 85%;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#pagination {
+  .pagination;
+  text-align: right;
+}
+

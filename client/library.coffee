@@ -78,12 +78,12 @@ Template.pagination.active_next_class = ->
 
 # Handle clicks on pagination
 Template.pagination.events =
-  'click .page_number': ->
+  'click .page-number': ->
     Session.set 'current-page', @page_number unless Session.get 'current_page' is @page_number
-  'click #previous_page': ->
+  'click #previous-page': ->
     cur_page = Session.get 'current-page'
     Session.set 'current-page', cur_page - 1 unless cur_page is 1
-  'click #next_page': ->
+  'click #next-page': ->
     cur_page = Session.get 'current-page'
     Session.set 'current-page', cur_page + 1 unless cur_page is Session.get 'number-of-pages'
 
