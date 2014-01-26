@@ -14,6 +14,7 @@
 
 <template name="books">
   <div id="items-view">
+    {{> pagination}}
     {{#if loading}}
       Loading...
     {{else}}

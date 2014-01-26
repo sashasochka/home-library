@@ -53,10 +53,29 @@ input {
   .table;
   .table-striped;
   .table-bordered;
-  border-spacing: 0;
-  border-collapse: collapse;
+  table-layout: fixed;
   td {
-    padding: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .col-name {
+    width: 30%;
+  }
+  .col-autor {
+    width: 20%;
+  }
+  .col-language {
+    width: 10%;
+  }
+  .col-genre {
+    width: 8%;
+  }
+  .col-year {
+    width: 8%;
+  }
+  .col-notes {
+    width: 24%;
   }
 }
 
@@ -69,6 +88,7 @@ input {
 
 #pagination {
   .pagination;
+  .pagination-sm;
   text-align: right;
 }
 
