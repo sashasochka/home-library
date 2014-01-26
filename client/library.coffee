@@ -5,7 +5,7 @@ booksCountHandle = Meteor.subscribe 'books-count'
 booksHandle = null
 
 Session.setDefault 'current-page', 1
-Session.setDefault 'books-per-page', 15
+Session.setDefault 'books-per-page', 16
 Session.set 'number-of-pages', 1
 
 Meteor.Router.add

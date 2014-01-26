@@ -33,6 +33,7 @@ Meteor.publish 'books-count', ->
     handle.stop()
 
 Meteor.methods
-  addBook: (book) ->
+  add_book: (book) ->
     book.timestamp = new Date().getTime()
+    # tb.info 'Book added', book
     Books.insert book
