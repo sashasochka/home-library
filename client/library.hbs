@@ -14,10 +14,8 @@
 
 <template name="books">
   <div id="items-view">
+    {{!log "books template"}}
     {{> pagination}}
-    {{#if loading}}
-      Loading...
-    {{else}}
       <table id="data-table">
         <thead>
           <tr>
@@ -28,6 +26,8 @@
         </thead>
         <tbody>
         {{#each books}}
+          {{!log this}}
+          {{!log "displaying book"}}
           <tr>
             {{#each this}}
               <td class="{{class}}" title="{{value}}">{{value}}</td>
@@ -43,17 +43,16 @@
           </tr>
         </tfoot>
       </table>
-      {{> pagination}}
-    {{/if}}
   </div>
 </template>
 
 <template name="pagination">
+  {{!log "pagination template"}}
   <ul id="pagination">
-    <li class="{{active_previous_class}}" id="previous-page"><a href="#">← Previous</a></li>
+    <li class="{{active_previous_class}}" id="previous-page"><a href="{{previous_page_url}}">← Previous</a></li>
     {{#each page}}
-      <li class="{{active_class}}"><a href="#" class="page-number">{{page_number}}</a></li>
+      <li class="{{active_class}}"><a href="/page/{{page_number}}" class="page-number">{{page_number}}</a></li>
     {{/each}}
-    <li class="{{active_next_class}}"><a href="#" id="next-page">Next →</a></li>
+    <li class="{{active_next_class}}"><a href="{{next_page_url}}" id="next-page">Next →</a></li>
   </ul>
 </template>
