@@ -26,5 +26,4 @@ accounts-base
 observatory
 router
 bootstrap3-less
-accounts-ui-bootstrap-3
-
+accounts-ui
