@@ -35,19 +35,16 @@ Handlebars.registerHelper 'log', (context) ->
 
 # Paginated list of books
 Template.books.books = ->
-  # tb.info 'meteor::books'
-  limit = Session.get 'books-per-page'
-  page = Session.get 'current-page'
-  # tb.info 'Template books called', {limit, page}
+  # tb.info 'Template.books.books'
   books = Books.find {},
     sort:
       timestamp: -1
     limit: Session.get 'books-per-page'
   books.map (book) ->
-    _.map(
-      [book.name, "#{book.author_name} #{book.author_surname}",
-       book.lang, book.genre, book.year, book.note],
-    (value, index) -> {value, class: Template.books.columns()[index].class})
+    _.map([book.name, "#{book.author_name} #{book.author_surname}",
+            book.lang, book.genre, book.year, book.note], (value, index) ->
+      value: value,
+      class: Template.books.columns()[index].class)
 
 
 # True if books still loading
@@ -81,13 +78,13 @@ Template.pagination.page = ->
   _.map _.range(1, 1 + Session.get 'number-of-pages'), (page_number) ->
     page_number: page_number
     active_class: ->
-      class_if 'active', page_number is Session.get 'current-page'
+      class_if 'active', Session.equals('current-page', page_number)
 
 Template.pagination.active_previous_class = ->
-  class_if 'disabled', (Session.get 'current-page') is 1
+  class_if 'disabled', Session.equals('current-page', 1)
 
 Template.pagination.active_next_class = ->
-  class_if 'disabled', (Session.get 'current-page') is (Session.get 'number-of-pages')
+  class_if 'disabled', Session.equals('current-page', Session.get 'number-of-pages')
 
 Template.pagination.previous_page_url = ->
   cur_page = parseInt Session.get 'current-page'
