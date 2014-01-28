@@ -9,3 +9,8 @@ Meteor.startup ->
       book.timestamp = t
       Books.insert book
       ++t
+
+  # export list of allowed users if available
+  if not AllowedUsers.findOne()? and allowed_emails?
+    _.each allowed_emails, (email) ->
+      AllowedUsers.insert {email}
