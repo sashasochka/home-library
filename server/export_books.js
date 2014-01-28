@@ -1,4 +1,4 @@
-exportedBooksData = [{"id": 8,"name": "Де, що і коли?","author_surname": "","author_name": "","lang": "Українська","genre": "Енциклопедія","year": 2007,"note": ""},
+export_books = [{"id": 8,"name": "Де, що і коли?","author_surname": "","author_name": "","lang": "Українська","genre": "Енциклопедія","year": 2007,"note": ""},
  {"id": 7,"name": "Як, звідки і чому?","author_surname": "","author_name": "","lang": "Українська","genre": "Енциклопедія","year": 2008,"note": ""},
  {"id": 9,"name": "Хочу все знати","author_surname": "","author_name": "","lang": "Українська","genre": "Енциклопедія","year": 2007,"note": "(Прочит.)"},
  {"id": 10,"name": "Енциклопедія для юних леді","author_surname": "","author_name": "","lang": "Українська","genre": "Енциклопедія","year": 2005,"note": ""},

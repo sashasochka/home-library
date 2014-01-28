@@ -1,9 +1,10 @@
 # if the database is empty on server start, export some default data
 
 Meteor.startup ->
-  if Books.find().count() is 0
+  # export default set of books if available
+  if not Books.findOne()? and export_books?
     t = new Date().getTime()
-    _.each exportedBooksData, (book) ->
+    _.each export_books, (book) ->
       delete book.id
       book.timestamp = t
       Books.insert book
