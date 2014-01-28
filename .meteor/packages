@@ -16,11 +16,9 @@ mongo-livedata
 spiderable
 
 preserve-inputs
-insecure
 less
 coffeescript
 accounts-google
-accounts-password
 accounts-base
 
 observatory

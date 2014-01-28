@@ -37,6 +37,55 @@ input {
   bottom: 0;
   left: 220px;
   overflow: auto;
+
+  #login-arrow {
+    .glyphicon;
+    .glyphicon-exclamation-sign;
+  }
+
+  #items-view {
+    padding-left: 40px;
+    width: 85%;
+    margin-top: 5px;
+    margin-left: 5px;
+
+    #data-table {
+      .table;
+      .table-striped;
+      .table-bordered;
+      table-layout: fixed;
+      td {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .col-name {
+        width: 30%;
+      }
+      .col-autor {
+        width: 20%;
+      }
+      .col-language {
+        width: 10%;
+      }
+      .col-genre {
+        width: 8%;
+      }
+      .col-year {
+        width: 8%;
+      }
+      .col-notes {
+        width: 24%;
+      }
+    }
+
+    #pagination {
+      .pagination;
+      .pagination-sm;
+      text-align: right;
+    }
+  }
+
 }
 
 #side-pane {
@@ -54,49 +103,20 @@ input {
 #login-panel {
   text-align: right;
   float: right;
-  padding-right: 30px;
-}
-
-#data-table {
-  .table;
-  .table-striped;
-  .table-bordered;
-  table-layout: fixed;
-  td {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  .login-display-name {
+    color: rgb(153, 111, 33);
+    font-weight: bold;
   }
-  .col-name {
-    width: 30%;
-  }
-  .col-autor {
-    width: 20%;
-  }
-  .col-language {
-    width: 10%;
-  }
-  .col-genre {
-    width: 8%;
-  }
-  .col-year {
-    width: 8%;
-  }
-  .col-notes {
-    width: 24%;
+  .login-button {
+    background: none;
+    .btn;
+    .btn-primary;
   }
 }
 
-#items-view {
-  padding-left: 40px;
-  width: 85%;
-  margin-top: 5px;
-  margin-left: 5px;
-}
 
-#pagination {
-  .pagination;
-  .pagination-sm;
-  text-align: right;
-}
+
 
