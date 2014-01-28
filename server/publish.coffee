@@ -1,5 +1,5 @@
 Meteor.publish 'books', (page, page_size) ->
-  # tb.info 'meteor publish callback called: subscribed', [page,  page_size]
+  # Logger.info 'meteor publish callback called: subscribed', [page,  page_size]
   check page, Match.Integer
   check page_size, Match.Integer
   Books.find {},
@@ -31,9 +31,3 @@ Meteor.publish 'books-count', ->
   # This is really important or you will get a memory leak.
   @onStop ->
     handle.stop()
-
-Meteor.methods
-  add_book: (book) ->
-    book.timestamp = new Date().getTime()
-    # tb.info 'Book added', book
-    Books.insert book
