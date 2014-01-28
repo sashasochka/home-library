@@ -44,7 +44,9 @@
           {{!log "displaying book"}}
           <tr>
             {{#each this}}
-              <td class="{{class}}" title="{{value}}">{{value}}</td>
+              <td class="{{class}}">
+                <span title="{{value}}">{{value}}</span>
+              </td>
             {{/each}}
           </tr>
         {{/each}}
