@@ -1,5 +1,10 @@
+checkLoggedIn = (subscriber) ->
+  unless subscriber.userId?
+    subscriber.error new Meteor.Error(HTTP.AccessDenied, 'user is not logged in')
+
 Meteor.publish 'books', (page, page_size) ->
   # Logger.info 'meteor publish callback called: subscribed', [page,  page_size]
+  checkLoggedIn @
   check page, Match.Integer
   check page_size, Match.Integer
   Books.find {},
@@ -9,6 +14,7 @@ Meteor.publish 'books', (page, page_size) ->
       timestamp: -1
 
 Meteor.publish 'books-count', ->
+  checkLoggedIn @
   count = 0 # the count of all books
   initializing = true # true only when we first start
   handle = Books.find().observeChanges
