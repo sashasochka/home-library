@@ -10,7 +10,6 @@ Deps.autorun ->
 
 Deps.autorun ->
   if Meteor.userId()
-    console.log ('subscribe again')
     Handles.books = Meteor.subscribe 'books',
       Session.get('current-page'),
       Session.get('books-per-page'),
