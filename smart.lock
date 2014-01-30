@@ -6,7 +6,8 @@
       "observatory": {},
       "router": {},
       "bootstrap3-less": {},
-      "jquery": {}
+      "jquery": {},
+      "assert": {}
     },
     "packages": {
       "lodash": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/nrafter/meteor-jquery.git",
         "tag": "v2.0.31",
         "commit": "3edf878d51e6f03eff70e1a7a969a19f42b6f1a1"
+      },
+      "assert": {
+        "git": "https://github.com/peerlibrary/meteor-assert.git",
+        "tag": "v0.2.2",
+        "commit": "5f87f665ccd6c74322febaf78fe5a24dbfb7949c"
       },
       "observatory-apollo": {
         "git": "https://github.com/superstringsoftware/observatory-apollo.git",

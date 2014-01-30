@@ -4,6 +4,7 @@
     "observatory": {},
     "router": {},
     "bootstrap3-less": {},
-    "jquery": {}
+    "jquery": {},
+    "assert": {}
   }
 }
