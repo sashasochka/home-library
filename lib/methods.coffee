@@ -1,5 +1,7 @@
 Meteor.methods
-  add_book: (book) ->
-    book.timestamp = new Date().getTime()
-    # Logger.info 'Book added', book
-    Books.insert book
+  'insert-book': (book) ->
+    if @userId?
+      book.timestamp = new Date().getTime()
+      Books.insert book
+    else
+      throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'
