@@ -5,6 +5,7 @@ html, body {
 }
 
 body {
+  padding-top: 70px;
   font-size: 16px;
   line-height: 1.5;
   background: #eeeeee;
@@ -28,12 +29,49 @@ input {
   margin: 0;
 }
 
+#top-bar {
+  .navbar;
+  .navbar-inverse;
+  .navbar-fixed-top;
+  & > div {
+    width: 99%;
+  }
+  #navbar-header {
+    .navbar-header;
+  }
+  #search-btn {
+    .btn;
+    .btn-default;
+  }
+
+  #login-panel {
+    text-align: right;
+    float: right;
+    .login-display-name {
+      color: rgb(33, 153, 148);
+      font-weight: bold;
+    }
+
+    .login-button {
+      background: none;
+      .btn;
+      .btn-success;
+    }
+
+    #login-buttons-logout {
+      .btn-danger;
+    }
+  }
+}
+
 #main-pane {
-  position: absolute;
-  top: 45px;
-  bottom: 0;
-  left: 220px;
   overflow: auto;
+
+  #sign-in-label {
+    .alert;
+    .alert-danger;
+    text-align: center;
+  }
 
   #login-arrow {
     .glyphicon;
@@ -42,78 +80,67 @@ input {
 
   #items-view {
     padding-left: 40px;
-    width: 85%;
-    margin-top: 5px;
-    margin-left: 5px;
-
-    #data-table {
-      .table;
-      .table-striped;
-      .table-bordered;
-      table-layout: fixed;
-      td {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-      .col-name {
-        width: 30%;
-      }
-      .col-autor {
-        width: 20%;
-      }
-      .col-language {
-        width: 10%;
-      }
-      .col-genre {
-        width: 8%;
-      }
-      .col-year {
-        width: 8%;
-      }
-      .col-notes {
-        width: 24%;
-      }
-    }
+    width: 90%;
+    margin: auto;
 
     #pagination {
       .pagination;
       .pagination-sm;
       text-align: right;
     }
+
+    #data-table {
+      .table;
+      .table-striped;
+      .table-bordered;
+      table-layout: fixed;
+      tr {
+        td {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          .book-controls {
+            display: none;
+            .remove-book-button {
+              .glyphicon;
+              .glyphicon-remove;
+              cursor: pointer;
+            }
+            .edit-book-button {
+              .glyphicon;
+              .glyphicon-edit;
+              cursor: pointer;
+            }
+          }
+        }
+        &:hover {
+          .book-controls {
+            display: block;
+          }
+        }
+      }
+
+      .col-control {
+        width: 3%;
+      }
+      .col-name {
+        width: 28%;
+      }
+      .col-author {
+        width: 22%;
+      }
+      .col-language {
+        width: 8%;
+      }
+      .col-genre {
+        width: 9%;
+      }
+      .col-year {
+        width: 6%;
+      }
+      .col-notes {
+        width: 24%;
+      }
+    }
   }
 }
-
-#side-pane {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 10%;
-  min-width: 100px;
-  right: auto;
-  overflow: auto;
-  border-right: 1px solid #999;
-  background: #ddd;
-}
-
-#login-panel {
-  text-align: right;
-  float: right;
-  position: absolute;
-  right: 2%;
-  top: 2%;
-  .login-display-name {
-    color: rgb(153, 111, 33);
-    font-weight: bold;
-  }
-  .login-button {
-    background: none;
-    .btn;
-    .btn-primary;
-  }
-}
-
-
-
-
