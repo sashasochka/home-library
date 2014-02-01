@@ -7,18 +7,25 @@ _.extend Template['books'],
     books = Books.find {},
       sort: sort
       limit: Session.get 'books-per-page'
+
+    book_values = (book) -> [
+      book.name,
+      book.author_name,
+      book.author_surname,
+      book.lang,
+      book.genre,
+      (book.year || ''), # if year is 0 then don't show it
+      book.note
+    ]
+
+    add_css_classes = (values) ->
+      _.map(values, (value, index) ->
+        value: value,
+        class: Template['table-header'].columns()[index].class)
+
     books.map (book) ->
-      _.map([
-        book.name,
-        book.author_name,
-        book.author_surname,
-        book.lang,
-        book.genre,
-        (book.year || ''), # if year is 0 then don't show it
-        book.note
-       ], (value, index) ->
-            value: value,
-            class: Template['table-header'].columns()[index].class)
+      _.extend book,
+        values: add_css_classes book_values book
 
   # True if books still loading
   loading: ->
