@@ -31,3 +31,9 @@ _.extend Template['books'],
   loading: ->
     # Logger.info 'Handles.books is null: ', (Handles.books is null)
     not Handles.books?.ready()
+
+  events:
+    'click .remove-book-button': ->
+      bootbox.confirm "Remove book with id=#{@_id}?", (positive_answer) =>
+        if positive_answer
+          Meteor.call 'remove-book', @_id
