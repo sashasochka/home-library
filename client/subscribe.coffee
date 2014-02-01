@@ -15,8 +15,7 @@ Deps.autorun ->
       Session.get('books-per-page'),
       Session.get('sort-by'),
       Session.get('sort-order'),
-      onError: (err) ->
-        Logger.error "Cannot subscribe to 'books': #{err.reason}"
+      onError: subscribe_error_logger 'books'
   else
     Handles.books = null
 
