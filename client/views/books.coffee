@@ -34,7 +34,7 @@ _.extend Template['books'],
 
   events:
     'click .remove-book-button': (evt) ->
-      bootbox.confirm "Remove book with id=#{@_id}?", (positive_answer) =>
+      bootbox.confirm "Remove book \"#{@name}\"?", (positive_answer) =>
         if positive_answer
           Meteor.call 'remove-book', @_id
       evt.preventDefault()
