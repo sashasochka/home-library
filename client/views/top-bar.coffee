@@ -20,3 +20,6 @@ _.extend Template['top-bar'],
   ]
   current_sort_name: ->
     Session.get 'current-sort-name'
+  events:
+    'click #add-book-button': ->
+      Template['add-book-dialog'].show()
