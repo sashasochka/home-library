@@ -1,4 +1,6 @@
 Handles = {
   booksCount: null,
-  books: null
+  books: null,
+  genreOptions: null,
+  langOptions: null
 };

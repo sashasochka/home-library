@@ -5,8 +5,14 @@ Deps.autorun ->
   if Meteor.userId()
     Handles.booksCount = Meteor.subscribe 'books-count',
       onError: subscribe_error_logger 'books-count'
+    Handles.genreOptions = Meteor.subscribe 'genre-options',
+      onError: subscribe_error_logger 'genre-options'
+    Handles.langOptions = Meteor.subscribe 'lang-options',
+      onError: subscribe_error_logger 'lang-options'
   else
     Handles.booksCount = null
+    Handles.genreOptions = null
+    Handles.langOptions = null
 
 Deps.autorun ->
   if Meteor.userId()

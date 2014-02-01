@@ -49,3 +49,32 @@ Meteor.publish 'books-count', ->
   # This is really important or you will get a memory leak.
   @onStop ->
     handle.stop()
+
+get_sorted_used_values = (collection, field_name) ->
+  _(collection.find().fetch())
+  .pluck(field_name)
+  .countBy()
+  .pairs()
+  .sortBy(1)
+  .reverse()
+  .pluck(0)
+  .value()
+
+lang_options = get_sorted_used_values Books, 'lang'
+
+Meteor.publish 'lang-options', ->
+  checkLoggedIn @
+
+  _.each lang_options, (option, index) =>
+    @added 'lang-options', index, {option}
+  # Let the client know that the subscription is ready.
+  @ready()
+
+genre_options = get_sorted_used_values Books, 'genre'
+Meteor.publish 'genre-options', ->
+  checkLoggedIn @
+
+  _.each genre_options, (option, index) =>
+    @added 'genre-options', index, {option}
+  # Let the client know that the subscription is ready.
+  @ready()
