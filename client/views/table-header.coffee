@@ -4,8 +4,11 @@ _.extend Template['table-header'],
     class: 'col-name'
     title: 'Name'
   ,
-    class: 'col-author'
-    title: 'Author'
+    class: 'col-author-name'
+    title: 'Author name'
+  ,
+    class: 'col-author-surname'
+    title: 'Author surname'
   ,
     class: 'col-language'
     title: 'Language'

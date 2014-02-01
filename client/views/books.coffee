@@ -8,7 +8,7 @@ _.extend Template['books'],
       sort: sort
       limit: Session.get 'books-per-page'
     books.map (book) ->
-      _.map([book.name, "#{book.author_name} #{book.author_surname}",
+      _.map([book.name, book.author_name, book.author_surname,
              book.lang, book.genre, book.year, book.note], (value, index) ->
         value: value,
         class: Template['table-header'].columns()[index].class)
