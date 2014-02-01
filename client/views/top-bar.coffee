@@ -18,6 +18,5 @@ _.extend Template['top-bar'],
     sort_option 'year', 'Year'
     sort_option 'note', 'Notes'
   ]
-,
   current_sort_name: ->
     Session.get 'current-sort-name'
