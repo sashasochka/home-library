@@ -1,5 +1,5 @@
 sort_option = (field, name) ->
-  url: "/page/#{Session.get 'current-page'}/sort-by/#{field}"
+  url: "/sort-by/#{field}/page/#{Session.get 'current-page'}"
   option_name: name
   is_divider: false
 
@@ -16,5 +16,8 @@ _.extend Template['top-bar'],
     sort_option 'lang', 'Language'
     sort_option 'genre', 'Genre'
     sort_option 'year', 'Year'
-    sort_option 'notes', 'Notes'
+    sort_option 'note', 'Notes'
   ]
+,
+  current_sort_name: ->
+    Session.get 'current-sort-name'

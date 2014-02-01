@@ -13,6 +13,8 @@ Deps.autorun ->
     Handles.books = Meteor.subscribe 'books',
       Session.get('current-page'),
       Session.get('books-per-page'),
+      Session.get('sort-by'),
+      Session.get('sort-order'),
       onError: (err) ->
         Logger.error "Cannot subscribe to 'books': #{err.reason}"
   else

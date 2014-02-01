@@ -42,7 +42,9 @@
           <!--<li><a href="/edit/ID">Edit</a></li>-->
           <!--<li><a href="/remove/ID">Remove</a></li>-->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort by<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Sort by {{current_sort_name}}<b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
               {{#each sort_options}}
                 {{#if is_divider}}
@@ -122,7 +124,7 @@
   <ul id="pagination">
     <li class="{{active_previous_class}}" id="previous-page"><a href="{{previous_page_url}}">← Previous</a></li>
     {{#each page}}
-      <li class="{{active_class}}"><a href="/page/{{page_number}}" class="page-number">{{page_number}}</a></li>
+      <li class="{{active_class}}"><a href="{{page_url}}" class="page-number">{{page_number}}</a></li>
     {{/each}}
     <li class="{{active_next_class}}"><a href="{{next_page_url}}" id="next-page">Next →</a></li>
   </ul>

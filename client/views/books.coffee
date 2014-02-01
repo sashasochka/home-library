@@ -2,9 +2,10 @@
 _.extend Template['books'],
   books: ->
     # Logger.info 'Template.books.books'
+    sort = {}
+    sort[Session.get 'sort-by'] = Session.get 'sort-order'
     books = Books.find {},
-      sort:
-        timestamp: -1
+      sort: sort
       limit: Session.get 'books-per-page'
     books.map (book) ->
       _.map([book.name, "#{book.author_name} #{book.author_surname}",
