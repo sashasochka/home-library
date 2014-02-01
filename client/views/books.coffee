@@ -14,7 +14,7 @@ _.extend Template['books'],
         book.author_surname,
         book.lang,
         book.genre,
-        book.year,
+        (book.year || ''), # if year is 0 then don't show it
         book.note
        ], (value, index) ->
             value: value,
