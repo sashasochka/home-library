@@ -122,10 +122,22 @@
 <template name="pagination">
   {{!log "pagination template"}}
   <ul id="pagination">
-    <li class="{{active_previous_class}}" id="previous-page"><a href="{{previous_page_url}}">← Previous</a></li>
+    <li class="{{active_previous_class}}" id="previous-page">
+      <a href="{{previous_page_url}}" title="Go to the previous page">
+        ← Previous
+      </a>
+    </li>
     {{#each page}}
-      <li class="{{active_class}}"><a href="{{page_url}}" class="page-number">{{page_number}}</a></li>
+      <li class="{{active_class}}">
+        <a href="{{page_url}}" class="page-number" title="Go to the page {{page_number}}">
+          {{page_number}}
+        </a>
+      </li>
     {{/each}}
-    <li class="{{active_next_class}}"><a href="{{next_page_url}}" id="next-page">Next →</a></li>
+    <li class="{{active_next_class}}">
+      <a href="{{next_page_url}}" id="next-page" title="Go to the next page">
+        Next →
+      </a>
+    </li>
   </ul>
 </template>
