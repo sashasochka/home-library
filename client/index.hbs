@@ -55,7 +55,7 @@
                 {{#if is_divider}}
                   <li class="divider"></li>
                 {{else}}
-                  <li><a href={{url}}>{{option_name}}</a></li>
+                  <li><a href="{{url}}">{{option_name}}</a></li>
                 {{/if}}
               {{/each}}
             </ul>
@@ -74,7 +74,7 @@
 <template name="books">
   <div id="items-view">
     {{!log "books template"}}
-    {{> pagination}}
+    {{>pagination}}
       <table id="data-table">
         <thead>
           {{>table-header}}
