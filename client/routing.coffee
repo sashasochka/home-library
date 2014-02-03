@@ -20,4 +20,4 @@ Meteor.Router.add
         when 'note' then 'notes'
         else Logger.error 'invalid sort_by option during routing'
   '*': ->
-    alert '404 Not found'
+    bootbox.alert '404 Not found'
