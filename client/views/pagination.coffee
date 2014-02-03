@@ -5,14 +5,13 @@ class_if = (class_name, bool_value) ->
 # List of book pages
 _.extend Template['pagination'],
   page: ->
+    sort_by = Session.get 'sort-by'
     _.map _.range(1, 1 + Session.get 'number-of-pages'), (page_number) ->
-      sort_by = Session.get 'sort-by'
       # return the object below
       page_url:
         if sort_by isnt 'timestamp'
-          "/sort-by/#{Session.get 'sort-by'}/page/#{page_number}"
-        else
-          "/page/#{page_number}"
+        then "/sort-by/#{Session.get 'sort-by'}/page/#{page_number}"
+        else "/page/#{page_number}"
       page_number: page_number
       active_class: ->
         class_if 'active', Session.equals('current-page', page_number)

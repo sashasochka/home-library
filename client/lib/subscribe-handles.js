@@ -1,6 +1,6 @@
 Handles = {
-  booksCount: null,
+  books_count: null,
   books: null,
-  genreOptions: null,
-  langOptions: null
+  genre_options: null,
+  lang_options: null
 };

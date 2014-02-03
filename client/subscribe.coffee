@@ -3,16 +3,16 @@ subscribe_error_logger = (collection_name) -> (err) ->
 
 Deps.autorun ->
   if Meteor.userId()
-    Handles.booksCount = Meteor.subscribe 'books-count',
+    Handles.books_count = Meteor.subscribe 'books-count',
       onError: subscribe_error_logger 'books-count'
-    Handles.genreOptions = Meteor.subscribe 'genre-options',
+    Handles.genre_options = Meteor.subscribe 'genre-options',
       onError: subscribe_error_logger 'genre-options'
-    Handles.langOptions = Meteor.subscribe 'lang-options',
+    Handles.lang_options = Meteor.subscribe 'lang-options',
       onError: subscribe_error_logger 'lang-options'
   else
-    Handles.booksCount = null
-    Handles.genreOptions = null
-    Handles.langOptions = null
+    Handles.books_count = null
+    Handles.genre_options = null
+    Handles.lang_options = null
 
 Deps.autorun ->
   if Meteor.userId()
@@ -26,6 +26,6 @@ Deps.autorun ->
     Handles.books = null
 
 Deps.autorun ->
-  if Meteor.userId() and Handles.booksCount?.ready()
+  if Meteor.userId() and Handles.books_count?.ready()
     Session.set 'number-of-pages',
       Math.ceil(BooksCount.findOne().count / Session.get('books-per-page'))

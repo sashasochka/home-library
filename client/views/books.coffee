@@ -14,14 +14,14 @@ _.extend Template['books'],
       book.author_surname,
       book.lang,
       book.genre,
-      (book.year || ''), # if year is 0 then don't show it
+      book.year || '', # if year is 0 then don't show it
       book.note
     ]
 
     add_css_classes = (values) ->
-      _.map(values, (value, index) ->
+      _.map values, (value, index) ->
         value: value,
-        class: Template['table-header'].columns()[index].class)
+        class: Template['table-header'].columns()[index].class
 
     books.map (book) ->
       _.extend book,
@@ -35,8 +35,7 @@ _.extend Template['books'],
   events:
     'click .remove-book-button': (evt) ->
       bootbox.confirm "Remove book \"#{@name}\"?", (positive_answer) =>
-        if positive_answer
-          Meteor.call 'remove-book', @_id
+        Meteor.call 'remove-book', @_id if positive_answer
       evt.preventDefault()
     'click .edit-book-button': (evt) ->
       evt.preventDefault()

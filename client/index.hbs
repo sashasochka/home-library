@@ -7,7 +7,10 @@
   {{>top-bar}}
   <div id="main-pane">
     {{#if currentUser}}
-      {{> books}}
+      <div id="items-view">
+        {{>pagination}}
+        {{>books}}
+      </div>
     {{else}}
       <hr>
       {{#if loggingIn}}
@@ -72,44 +75,39 @@
 </template>
 
 <template name="books">
-  <div id="items-view">
-    {{!log "books template"}}
-    {{>pagination}}
-      <table id="data-table">
-        <thead>
-          {{>table-header}}
-        </thead>
-        <tbody>
-        {{#each books}}
-          {{!log this}}
-          {{!log "displaying book"}}
-          <tr>
-            <td class="col-control">
-              <div class="book-controls">
-                <a href="#" class="remove-book-button"></a>
-                <a href="#" class="edit-book-button"></a>
-              </div>
-            </td>
-            {{#each values}}
-              <td class="{{class}}">
-                <span title="{{value}}">{{value}}</span>
-              </td>
-            {{/each}}
-          </tr>
+  {{!log "books template"}}
+  <table id="data-table">
+    <thead>
+      {{>table-header}}
+    </thead>
+    <tbody>
+    {{#each books}}
+      {{!log this}}
+      {{!log "displaying book"}}
+      <tr>
+        <td class="col-control">
+          <div class="book-controls">
+            <a href="#" class="remove-book-button"></a>
+            <a href="#" class="edit-book-button"></a>
+          </div>
+        </td>
+        {{#each values}}
+          <td class="{{class}}">
+            <span title="{{value}}">{{value}}</span>
+          </td>
         {{/each}}
-        </tbody>
-        <tfoot>
-          {{>table-header}}
-        </tfoot>
-      </table>
-  </div>
+      </tr>
+    {{/each}}
+    </tbody>
+    <tfoot>
+      {{>table-header}}
+    </tfoot>
+  </table>
 </template>
 
 <template name="table-header">
   <tr>
-    <th class="col-control">
-
-    </th>
+    <th class="col-control"></th>
     {{#each columns}}
       <th class="{{class}}">
         <span title="{{title}}">{{title}}</span>
@@ -150,6 +148,7 @@
     {{{book-input-helper "Genre" "required" id="input-book-genre" value=default-genre list="genre-datalist"}}}
     {{{book-input-helper "Year" id="input-book-year" type="number" min="1850" max=max-year value=default-year}}}
     {{{book-input-helper "Note" id="input-book-note"}}}
+
     <datalist id="lang-datalist">
       {{#each lang-option}}
         <option value="{{option}}"></option>

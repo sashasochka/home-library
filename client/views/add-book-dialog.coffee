@@ -9,7 +9,7 @@ _.extend template,
         success:
           label: "Add book"
           className: "btn-success"
-          callback: () ->
+          callback: ->
             valid = $('#add-book-form').parsley 'validate'
             if valid
               book =
