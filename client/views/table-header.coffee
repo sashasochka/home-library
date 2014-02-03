@@ -19,6 +19,6 @@ _.extend Template['table-header'],
     class: 'col-year'
     title: 'Year'
   ,
-    class: 'col-notes'
-    title: 'Notes'
+    class: 'col-note'
+    title: 'Note'
   ]
