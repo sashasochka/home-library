@@ -25,7 +25,7 @@ Meteor.methods
     if @userId?
       check book, ValidBook
       capitalize_fields book
-      book.timestamp = new Date().getTime()
+      book.timestamp = Date.now()
       Books.insert book
     else
       throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'
