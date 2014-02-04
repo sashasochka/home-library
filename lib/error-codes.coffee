@@ -1,3 +1,2 @@
-HTTP = {
+@HTTP =
   AccessDenied: 403
-};
