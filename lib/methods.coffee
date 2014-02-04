@@ -26,6 +26,7 @@ Meteor.methods
       check book, ValidBook
       capitalize_fields book
       book.timestamp = Date.now()
+      book.search_index = search_index book unless @isSimulation
       Books.insert book
     else
       throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'
@@ -34,6 +35,7 @@ Meteor.methods
       check book, ValidBook
       capitalize_fields book
       book.timestamp = Books.findOne({_id}).timestamp
+      book.search_index = search_index book unless @isSimulation
       Books.update {_id}, book
     else
       throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'

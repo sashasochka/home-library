@@ -4,6 +4,8 @@ subscribe_error_logger = (collection_name) -> (err) ->
 Deps.autorun ->
   if Meteor.userId()
     Handles.books_count = Meteor.subscribe 'books-count',
+      search_query: Session.get 'search-query'
+    ,
       onError: subscribe_error_logger 'books-count'
     Handles.genre_options = Meteor.subscribe 'genre-options',
       onError: subscribe_error_logger 'genre-options'
@@ -17,10 +19,12 @@ Deps.autorun ->
 Deps.autorun ->
   if Meteor.userId()
     Handles.books = Meteor.subscribe 'books',
-      Session.get('current-page'),
-      Session.get('books-per-page'),
-      Session.get('sort-by'),
-      Session.get('sort-order'),
+      page: Session.get 'current-page'
+      page_size: Session.get 'books-per-page'
+      sort_by: Session.get 'sort-by'
+      sort_order: Session.get 'sort-order'
+      search_query: Session.get 'search-query'
+    ,
       onError: subscribe_error_logger 'books'
   else
     Handles.books = null

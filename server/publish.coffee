@@ -5,31 +5,46 @@ checkLoggedIn = (subscriber) ->
 is_value = (value) -> Match.Where (arg) ->
   arg is value
 
-Meteor.publish 'books', (page, page_size, sort_by, sort_order) ->
+escape_regexp = (str) ->
+  str.replace /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"
+
+create_search_selector = (query) ->
+  return {} unless query
+  regexes = query.toLowerCase().compact().split(' ').map escape_regexp
+  $and: regexes.map (regex) ->
+    search_index:
+      $regex: regex
+
+Meteor.publish 'books', (options) ->
   # Logger.info 'meteor publish callback called: subscribed', [page,  page_size]
   checkLoggedIn @
-  check page, Match.Integer
-  check page_size, Match.Integer
+  check options,
+    page: Match.Integer
+    page_size: Match.Integer
+    sort_by: Match.Optional String
+    sort_order: Match.Optional Match.OneOf(is_value(-1), is_value(1))
+    search_query: Match.Optional String
   sort = {}
   # Logger.info 'Sort info', {sort_by,  sort_order}
-  if sort_by? and sort_order?
-    check sort_by, String
-    check sort_order, Match.OneOf(is_value(-1), is_value(1))
-    sort[sort_by] = sort_order
+  if options.sort_by? and options.sort_order?
+    sort[options.sort_by] = options.sort_order
   else
     sort =
       timestamp: -1
   # Logger.info 'Sorting using: ', sort
-  Books.find {},
-    limit: page_size
-    skip: page_size * (page - 1)
+  selector = create_search_selector options.search_query
+  Books.find selector,
+    limit: options.page_size
+    skip: options.page_size * (options.page - 1)
     sort: sort
 
-Meteor.publish 'books-count', ->
+Meteor.publish 'books-count', (options) ->
   checkLoggedIn @
+  check options, Match.Optional
+    search_query: Match.Optional String
   count = 0 # the count of all books
   initializing = true # true only when we first start
-  handle = Books.find().observeChanges
+  handle = Books.find(create_search_selector options?.search_query).observeChanges
     added: =>
       ++count # Increment the count when books are added.
       @changed 'books-count', 1, {count} unless initializing

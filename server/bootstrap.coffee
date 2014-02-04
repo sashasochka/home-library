@@ -5,8 +5,8 @@ Meteor.startup ->
   if not Books.findOne()? and export_books?
     t = Date.now()
     _.each export_books, (book) ->
-      delete book.id
       book.timestamp = t
+      book.search_index = search_index book
       Books.insert book
       ++t
 

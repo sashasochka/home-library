@@ -21,7 +21,6 @@ _.extend template,
                 genre: $('#input-book-genre').val()
                 year: _.parseInt $('#input-book-year').val() or 0
                 note: $('#input-book-note').val()
-              Logger.info 'year', book.year
               if is_editing
                 Meteor.call 'edit-book', book, Session.get('editing-book-id'), (error) ->
                   bootbox.alert 'Error: cannot edit book. Check entered data' if error
