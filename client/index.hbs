@@ -141,13 +141,13 @@
 
 <template name="add-book-dialog">
   <form id="add-book-form" parsley-validate>
-    {{{book-input-helper "Name" "required" id="input-book-name"}}}
-    {{{book-input-helper "Author name" id="input-book-author-name"}}}
-    {{{book-input-helper "Author surname" id="input-book-author-surname"}}}
-    {{{book-input-helper "Language" "required" id="input-book-lang" list="lang-datalist"}}}
+    {{{book-input-helper "Name" "required" id="input-book-name" value=default-name}}}
+    {{{book-input-helper "Author name" id="input-book-author-name" value=default-author-name}}}
+    {{{book-input-helper "Author surname" id="input-book-author-surname" value=default-author-surname}}}
+    {{{book-input-helper "Language" "required" id="input-book-lang" list="lang-datalist" value=default-lang}}}
     {{{book-input-helper "Genre" "required" id="input-book-genre" value=default-genre list="genre-datalist"}}}
-    {{{book-input-helper "Year" id="input-book-year" type="number" min="1850" max=max-year value=default-year}}}
-    {{{book-input-helper "Note" id="input-book-note"}}}
+    {{{book-input-helper "Year" id="input-book-year" type="number" parsley-type="number" min=1850 max=max-year value=default-year}}}
+    {{{book-input-helper "Note" id="input-book-note" value=default-note}}}
 
     <datalist id="lang-datalist">
       {{#each lang-option}}

@@ -22,4 +22,6 @@ _.extend Template['top-bar'],
     Session.get 'current-sort-name'
   events:
     'click #add-book-button': ->
-      Template['add-book-dialog'].show()
+      Template['add-book-dialog'].show
+        'default-genre': -> GenreOptions.findOne().option
+        'default-year': -> Template['add-book-dialog']['max-year']()

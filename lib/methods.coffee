@@ -29,6 +29,14 @@ Meteor.methods
       Books.insert book
     else
       throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'
+  'edit-book': (book, _id) ->
+    if @userId?
+      check book, ValidBook
+      capitalize_fields book
+      book.timestamp = Books.findOne({_id}).timestamp
+      Books.update {_id}, book
+    else
+      throw new Meteor.Error HTTP.AccessDenied, 'user is not logged in'
   'remove-book': (book_id) ->
     if @userId?
       # Logger.info "Removing book with id #{book_id}"

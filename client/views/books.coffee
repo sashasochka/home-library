@@ -38,4 +38,14 @@ _.extend Template['books'],
         Meteor.call 'remove-book', @_id if positive_answer
       evt.preventDefault()
     'click .edit-book-button': (evt) ->
+      Session.set 'editing-book-id', @_id
+      # Logger.info Session.get 'editing-book-id'
+      Template['add-book-dialog'].show
+        'default-name': @name
+        'default-author-name': @author_name
+        'default-author-surname': @author_surname
+        'default-lang': @lang
+        'default-genre': @genre
+        'default-year': @year
+        'default-note': @note
       evt.preventDefault()
