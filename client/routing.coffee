@@ -1,6 +1,8 @@
 Meteor.Router.add
   '/': ->
     Session.set 'current-page', 1
+    Session.set 'sort-by', 'timestamp'
+    Session.set 'search-query', undefined
   '/page/:page_number': (page_number) ->
     Session.set 'current-page', parseInt page_number
   '/sort-by/:sort_by/page/:page_number': (sort_by, page_number) ->

@@ -36,6 +36,8 @@ _.extend Template['top-bar'],
     sort_option 'year', 'Year'
     sort_option 'note', 'Notes'
   ]
+  search_query: ->
+    Session.get 'search-query'
   current_sort_name: ->
     Session.get 'current-sort-name'
   events:
